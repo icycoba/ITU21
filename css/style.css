@@ -23,21 +23,19 @@ nav{
     margin: 20px auto;
     z-index: 1;
     display: flex;
-    align-items: right;
+    align-items: center;
 }
 
 .nav-links{
-    /*border-bottom: 1px solid white;*/
     flex: 1;
     text-align: right;
-    /*margin-bottom: 5px;*/
     height: 75px;
     background-color: whitesmoke;
 }
 .nav-links ul li{
     list-style: none;
     display: inline-block;
-    margin: 15px 5px;
+    margin: 15px 1px;
     margin-right: 20px;
 }
 .nav-links ul li a{

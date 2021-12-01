@@ -48,3 +48,10 @@ nav{
     border-width: 2px;
     color: #c0c0c0;
 }
+.nav-links #logo{
+    float:left;
+    height: 40px;
+    width: auto;
+    position: left;
+    margin-left: 5px;
+}

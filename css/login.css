@@ -6,7 +6,6 @@
 
 .loginCont{
     display: block;
-    width:500px;
     margin-left: 19%;
     margin-top: 10%;
 }
@@ -52,10 +51,4 @@
 label{
     color:black;
     font-size: medium;
-}
-
-.logoImg{
-    float:right;
-    margin-right: 20%;
-    margin-bottom: 100%;
 }

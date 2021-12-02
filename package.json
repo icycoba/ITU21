@@ -1,0 +1,23 @@
+{
+  "name": "itu21",
+  "version": "1.0.0",
+  "description": "* Martin Hlinský (xhlins01)\r * Karel Galeta (xgalet05)\r * Jakub Ryšánek (xrysan05)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icycoba/ITU21.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/icycoba/ITU21/issues"
+  },
+  "homepage": "https://github.com/icycoba/ITU21#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

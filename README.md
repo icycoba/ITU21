@@ -19,3 +19,8 @@
 * Testování
 * Sebehodnocení
 * Obhajoba
+
+## První spuštění index.js
+* získat node a npm, například z (https://nodejs.org/en/download/)
+* npm install (stáhne dependencies z package.json)
+* node .

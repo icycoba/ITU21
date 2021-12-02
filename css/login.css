@@ -52,3 +52,25 @@ label{
     color:black;
     font-size: medium;
 }
+
+.reg{
+    margin-top: 70px;
+    margin-left: 19%;
+    border-top: solid black;
+    width: 500px;
+}
+
+.reg button{
+    background-color: #1560bd;
+    margin-top: 20px;
+    width: 200px;
+    height: 35px;
+    border-radius: 3px;
+    border:none;
+    cursor: pointer;
+}
+
+.reg h3{
+    color: black;
+    padding-top: 30px;
+}

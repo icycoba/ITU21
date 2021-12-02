@@ -57,7 +57,7 @@ label{
     margin-top: 70px;
     margin-left: 19%;
     border-top: solid black;
-    width: 500px;
+    width: 200px;
 }
 
 .reg button{
@@ -72,5 +72,5 @@ label{
 
 .reg h3{
     color: black;
-    padding-top: 30px;
+    margin-top: 20px;
 }

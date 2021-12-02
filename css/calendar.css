@@ -89,19 +89,6 @@
     /*border: solid 1px;*/
 }
 
-.weekSwitch button{
-    color: white;
-    grid-column: 1;
-    grid-row: 2;
-    justify-self: center;
-    background-color: #1560bd;
-    width: 75px;
-    height: 35px;
-    border-radius: 3px;
-    border: none;
-    cursor: pointer;
-}
-
 .leftArrow{
     position: relative;
     grid-column: 1;

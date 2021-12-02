@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica;
+    color: black; 
+}
+
+.title{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.title h1{
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: right;
+}
+
+.title p{
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: right;
+}
+
+.buttons button{
+    display: inline-block;
+    border:none;
+    width: 200px;
+    height: 30px;
+    background-color: #1560bd;
+}
+
+#learnMore{
+    color:white;
+    text-decoration: none;
+}
+
+#login{
+    color: white;
+    text-decoration: none;
+}

@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica;  
+}
+
+.welcomeCont{
+    margin: auto;
+    width: 70%;
+    margin-top: 5%;
+    margin-left: 25%;
+    overflow: hidden;
+}
+.welcomeCont h3{
+    color: black;
+    font-size: 80px;
+    display: block;
+}
+
+.welcomeCont img{
+    float: right;
+    margin-right: 20%;
+}
+
+.welcomeCont button{
+    display: block;
+    background-color: #1560bd;
+    margin-top: 120px;
+    margin-left: 1%;
+    width: 200px;
+    height: 35px;
+    border-radius: 3px;
+    border:none;
+    cursor: pointer;
+}
+
+#search,#cal{
+    text-decoration: none;
+}

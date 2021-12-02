@@ -2,7 +2,6 @@ var express = require('express');
 var app = express();
 const PORT = 8080;
 
-// let id = 0;
 
 // "Databáze" uživatelů
 const users = [

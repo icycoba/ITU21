@@ -31,7 +31,6 @@
     grid-area: days;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    text-transform: uppercase;
     font-size: 12px;
     background-color: #E4F1FD;
     border-bottom: 1px solid rgba(0, 0, 0, 0.25);
@@ -76,3 +75,32 @@
     border-left: 1px solid rgba(0, 0, 0, 0.25);
     border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
+
+.weekSwitch{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.leftArrow{
+    position: relative;
+    grid-column: 1;
+    justify-self: right;
+}
+
+.rightArrow{
+    position: relative;
+    grid-column: 3;
+    justify-self: left;
+}
+
+#leftArr{
+    width: 20px;
+    height: auto;
+    transform: rotate(180deg)
+}
+
+#rightArr{
+    width: 20px;
+    height: auto;
+}
+

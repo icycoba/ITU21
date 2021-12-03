@@ -1,0 +1,34 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica;
+    color: black;
+}
+
+.introCont{
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    height:max-content;
+    background-color: #1560BD;
+}
+
+.introCont h2{
+    grid-column: 2 / span 2;
+    grid-row: 2;
+    justify-self: left;
+    color: white;
+}
+
+.introCont p{
+    grid-column: 2 / span 3;
+    grid-row: 3;
+    justify-self: center;
+    color: white;
+}
+
+.introCont img{
+    grid-column: 5 / span 9;
+    grid-row: 1 / span 3;
+    justify-self: center;
+}

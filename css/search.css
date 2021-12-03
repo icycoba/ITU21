@@ -5,7 +5,15 @@
 }
 
 .searchBar{
-    margin-left: 36%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+}
+
+.searchBar form{
+    grid-column: 3;
+    grid-row: 2;
+    justify-self: center;
 }
 
 #searchBar{
@@ -17,12 +25,45 @@
     border-radius: 7px;
 }
 
-input:focus, textarea:focus{
+.searchBar input:focus, textarea:focus{
     color:black;
     text-indent: 6px;
 }
 
-label{
+.searchBar label{
     color: black;
-    margin-left: 16%;
+    margin-left: 36%;
+}
+
+.items{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    background-color: #1560BD;
+}
+
+.items img{
+    width: 150px;
+    height: auto;
+}
+
+.items a{
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    justify-self: left;
+}
+
+.items #serviceName{
+    color: black;
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: center;
+    cursor: pointer;
+}
+
+.items #serviceDesc{
+    color: black;
+    grid-column: 3;
+    grid-row: 2;
+    justify-self: center;
 }

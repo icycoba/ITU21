@@ -6,12 +6,49 @@
 
 .submitForm{
     display: grid;
-    grid-template-rows: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(5, 1fr);
 }
 
 .submitForm form{
-    grid-row: 3;
+    grid-row: 2;
     grid-column: 3;
     justify-self: center;
+}
+
+#nameIn{
+    width: 500px;
+    height: 25px;
+    outline-color: #1560BD;
+    border-style: solid;
+    border-color: #1560BD;
+    border-radius: 7px;
+}
+
+#emailIn{
+    width: 500px;
+    height: 25px;
+    outline-color: #1560BD;
+    border-style: solid;
+    border-color: #1560BD;
+    border-radius: 7px;
+}
+
+.submitForm input:focus, textarea:focus{
+    color:black;
+    text-indent: 6px;
+}
+
+.submitForm label{
+    color: black;
+}
+
+#submit{
+    background-color: #1560bd;
+    width: 200px;
+    height: 35px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    margin-left: 30%;
 }

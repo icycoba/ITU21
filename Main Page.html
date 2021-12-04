@@ -70,7 +70,7 @@
                         <div class="row row-24">23:00</div>
                     </div>
                     <div class="content">
-                        <div id="1"></div>
+                        <div onclick="uploadForm()" id="1"></div>
                         <div id="2"></div>
                         <div id="3"></div>
                         <div id="4"></div>
@@ -245,4 +245,54 @@
     </body>
 
     <script src="script/script.js"></script>
+
+    <script type="text/javascript">
+
+        /*
+            XMLHttpRequest object ctor.
+        */
+        function createXmlHttpRequestObject(){
+            var request;
+
+            try{
+                request = new XMLHttpRequest();
+            } catch(e){
+                try{
+                    request = new ActiveXObject("Microsoft.XMLHttp");
+                } catch(e){
+                    // ignore err
+                }
+            }
+
+            if (!request){
+                alert("Nepodařilo se vytvořit XMLHttpRequest.");
+            } else{
+                return request;
+            }
+        }
+
+        function uploadForm(){
+            try{
+                var request = createXmlHttpRequestObject();
+                request.open("POST", "http://localhost:8080/reservation/1", true);
+                request.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+                //request.setRequestHeader("Access-Control-Allow-Origin", "*")
+
+                request.onreadystatechange = function() {
+                    if((request.readyState == 4) && (request.status == 200)){
+                        console.log("success");
+                    }
+                }
+
+                // id, serviceid, date, time, name, email, phonenum
+                var data = JSON.stringify({"serviceid": 1, "date": "00.00.2012", "time": "1800", "name": "David Bruhtr", "email": "priklad@email.com", "phonenum": "020202020"});
+                console.log(data)
+                request.send(data);
+            }
+            catch (e){
+                alert(e.toString());
+            }
+        }
+
+    </script>
 </html>

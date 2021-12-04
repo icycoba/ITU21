@@ -13,6 +13,10 @@ const services = [
     { "serviceid" : 0, "name" : "Služba", "desc" : "Popis služby", "imagesrc" : "images/temp_image.png" }
 ]
 
+const reggedUsers = [
+    { "id" : 0, "login" : "root", "password" : "root"}
+]
+
 app.use(express.json())
 
 app.use(function (req,res,next){
@@ -36,8 +40,8 @@ app.get('/reservation/:id', (req,res) => {
     res.send(user)
 })
 
-app.post('/reservation/:id', (req,res) => {
-    const {id} = req.params;
+app.post('/reservation', (req,res) => {
+    const id = users.length;
     const {serviceid} = req.body;
     const {date} = req.body;
     const {time} = req.body;
@@ -66,8 +70,8 @@ app.get('/search/:serviceid', (req,res) => {
     res.send(service)
 })
 
-app.post('/search/:serviceid', (req,res) => {
-    const {serviceid} = req.params;
+app.post('/search', (req,res) => {
+    const serviceid = services.length;
     const {name} = req.body;
     const {desc} = req.body;
     const {imagesrc} = req.body;
@@ -79,13 +83,46 @@ app.post('/search/:serviceid', (req,res) => {
         desc = "Popisek neni dostupny"
     }
 
-    services.push({"serviceid" : parseInt(serviceid), "name" : name, "desc" : desc, "imagesrc" : imagesrc});
+    
 
     if(!name){
         res.status(418).send({message: 'Potrebuju jmeno'});
     }
 
+    services.push({"serviceid" : parseInt(serviceid), "name" : name, "desc" : desc, "imagesrc" : imagesrc});
+
     res.send({
         sluzbos : `Služba ID: ${serviceid}, jmeno: ${name}, popis: ${desc}, imagesrc: ${imagesrc}`
+    })
+})
+
+app.get('/usersregister', (req,res) => {
+    res.send(reggedUsers)
+})
+
+app.get('/usersregister/:id', (req,res) => {
+    const user = users.find(u => u.id === parseInt(req.params.id));
+    if(!user) res.status(404).send("Uživatel nenalezen.")
+    res.send(user)
+})
+
+app.post('/usersregister', (req,res) => {
+    const id = reggedUsers.length;
+    const {login} = req.body;
+    const {password} = req.body;
+
+    if(!login || !password){
+        res.status(418).send({message: 'Server neobdrzel login nebo heslo.'});
+    }
+
+    if(reggedUsers.some(e => e.login == login )) {
+        res.status(409).send({message: 'Login uz existuje v databazi'});
+        return;
+    }
+
+    reggedUsers.push({"id": parseInt(id), "login" : login, "password" : password});
+
+    res.send({
+        udaje: `${login}, ${password}`
     })
 })

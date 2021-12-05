@@ -92,6 +92,10 @@ label{
     margin-top: 40px;
 }
 
+.reg a{
+    text-decoration: none;
+}
+
 @media only screen and (max-width: 991px) {
     .loginCont{
         float:left; 

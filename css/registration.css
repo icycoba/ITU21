@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     font-family: Helvetica;
+    color: black;
 }
 
 .regCont{
@@ -56,9 +57,7 @@
     
 }
 
-.regCont button{
-    grid-column: 1;
-    grid-row: 6;
+#submit {
     justify-self: center;
     background-color: #1560bd;
     width: 200px;
@@ -66,6 +65,7 @@
     border-radius: 3px;
     border: none;
     cursor: pointer;
+    color: white;
 }
 
 #confirm{

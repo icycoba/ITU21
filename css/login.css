@@ -55,10 +55,8 @@
     border: none;
     cursor: pointer;
     color: white;
-}
-
-#confirm{
-    text-decoration: none;
+    margin-left: 19%;
+       
 }
 
 label{

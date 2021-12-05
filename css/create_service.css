@@ -5,59 +5,43 @@
     color: black;
 }
 
-.regCont{
+.newService{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(1, 1fr);
     height: 300px;
 }
 
-.regCont img{
-    grid-column: 2;
-    grid-row: 1 / span 2;
+.newService form{
+    grid-row: 1;
+    grid-column: 3;
     justify-self: center;
 }
 
-.regCont form{
-    grid-column: 1;
-    grid-row: 6;
-    justify-self: center;
-}
-
-#regnameIn{
+#name{
     width: 320px;
     height: 25px;
     outline-color: #1560BD;
     border-style: solid;
     border-color: #1560BD;
     border-radius: 7px;
-    margin-bottom: 20px;
-}
-
-#newpassIn{
-    width: 320px;
-    height: 25px;
-    outline-color: #1560BD;
-    border-style: solid;
-    border-color: #1560BD;
-    border-radius: 7px;
-}
-
-#emailregIn{
-    width: 320px;
-    height: 25px;
-    outline-color: #1560BD;
-    border-style: solid;
-    border-color: #1560BD;
-    border-radius: 7px;
-}
-
-#imageIn{
+    margin-bottom: 30px;
     color:black;
-    
 }
 
-#submit {
+#description{
+    width: 320px;
+    height: 100px;
+    outline-color: #1560BD;
+    border-style: solid;
+    border-color: #1560BD;
+    border-radius: 7px;
+    margin-bottom: 30px;
+    color:black;
+}
+
+
+#submit{
     justify-self: center;
     background-color: #1560bd;
     width: 200px;
@@ -66,14 +50,7 @@
     border: none;
     cursor: pointer;
     color: white;
-    margin-left: 19%;
+    margin-left: 19%;     
 }
 
-#confirm{
-    text-decoration: none;
-}
 
-label{
-    color:black;
-    font-size: medium;
-}

@@ -110,10 +110,11 @@ app.post('/usersregister', (req,res) => {
     
     const id = reggedUsers.length;
     const {login} = req.body;
+    const {email} = req.body;
     const {password} = req.body;
 
     if(!login || !password){
-        res.status(418).send({message: 'Server neobdrzel login nebo heslo.'});
+        res.status(418).send({message: 'Server neobdrzel login nebo heslo nebo email.'});
     }
 
     if(reggedUsers.some(e => e.login == login )) {
@@ -121,7 +122,12 @@ app.post('/usersregister', (req,res) => {
         return;
     }
 
-    reggedUsers.push({"id": parseInt(id), "login" : login, "password" : password});
+    if(reggedUsers.some(e => e.email == email )) {
+        res.status(409).send({message: 'Email uz existuje v databazi'});
+        return;
+    }
+
+    reggedUsers.push({"id": parseInt(id), "login" : login, "email" : email, "password" : password});
 
     res.send({
         udaje: `${login}, ${password}`

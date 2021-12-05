@@ -9,9 +9,6 @@
     width: 100%;
 }
 
-#calendar td.highlighted{
-    background-color: yellow;
-}
 .contCell{
     border: 1px solid;
     cursor:pointer;

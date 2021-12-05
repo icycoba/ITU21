@@ -79,6 +79,7 @@
     border-color: #1560BD;
     border-radius: 10px;
     cursor: pointer;
+    text-indent: 6px;
 }
 
 .item input:focus{

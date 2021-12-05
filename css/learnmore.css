@@ -57,3 +57,42 @@
     grid-row: 1 / span 3;
     justify-self: center;
 }
+
+@media only screen and (max-width: 991px) {
+    
+    .introCont img {
+        grid-column: 1 / span 9;
+        grid-row: 4 / span 3;
+        justify-self: center;
+    }
+    .introCont p {
+        grid-column: 3 / span 5;
+        grid-row: 3;
+        justify-self: center;
+        color: white;
+    }
+    .introCont h2 {
+        grid-column: 1 / span 9;
+        grid-row: 2;
+        justify-self: center;
+        color: white;
+    }
+    .infoCont img{
+        grid-column: 1 / span 9;
+        grid-row: 4 / span 3;
+        justify-self: center;
+    }
+    .infoCont p {
+        grid-column: 3 / span 5;
+        grid-row: 3;
+        justify-self: center;
+        color: black;
+    }
+    .infoCont h2 {
+        grid-column: 1 / span 9;
+        grid-row: 2;
+        justify-self: center;
+        color: black;
+    }
+
+}

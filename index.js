@@ -3,9 +3,9 @@ var app = express();
 const PORT = 8080;
 
 
-// "Databáze" uživatelů
-const users = [
-    { "id": 0, "serviceid": 0, "date": "00.00.0000", "time": "0000", "name": "Jane Doe", "email": "JaneDoe@email.com", "phonenum": "000000000000" }
+// "Databáze" buněk
+const cells = [
+    { "id": 0, "cellid" : 0, "serviceid": 0, "date": "00.00.0000", "time": "0000", "name": "Jane Doe", "email": "JaneDoe@email.com", "phonenum": "000000000000", "capacity" : 0 }
 ]
 
 // "Databáze" služeb
@@ -31,25 +31,26 @@ app.listen(
 )
 
 app.get('/reservation', (req,res) => {
-    res.send(users);
+    res.send(cells);
 })
 
 app.get('/reservation/:id', (req,res) => {
-    const user = users.find(u => u.id === parseInt(req.params.id));
+    const user = cells.find(u => u.id === parseInt(req.params.id));
     if(!user) res.status(404).send("Uživatel nenalezen.")
     res.send(user)
 })
 
 app.post('/reservation', (req,res) => {
-    const id = users.length;
+    const id = cells.length;
+    const {cellid} = req.body;
     const {serviceid} = req.body;
-    const {date} = req.body;
-    const {time} = req.body;
     const {name} = req.body;
     const {email} = req.body;
     const {phonenum} = req.body;
+    const {date} = req.body;
+    const {time} = req.body;
     
-    users.push({"id": parseInt(id), "serviceid": serviceid, "date": date, "time": time, "name": name, "email": email, "phonenum": phonenum})
+    cells.push({"id": parseInt(id), "cellid": cellid, "serviceid": serviceid, "date": date, "time": time, "name": name, "email": email, "phonenum": phonenum})
 
     if(!date || !time || !name || !email || !phonenum){
         res.status(418).send({message: 'Potrebuju datum, cas, jmeno, email nebo tel. cislo'})

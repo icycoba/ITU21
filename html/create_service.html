@@ -28,7 +28,7 @@
                 </ul>
             </div>
             <div class="newService">
-                <form onsubmit="createService()">
+                <form onsubmit="return createService();">
                     <label for="name">Název:</label><br>
                     <input type="text" id="name" name="name"><br>
                     <label for="description">Popis:</label><br>
@@ -37,6 +37,7 @@
                     <input type="file" id="image" name="image" accept="image/jpeg, image/png"><br><br>
                     <input type="submit" value="Vytvořit" id="submit">
                 </form>
+                <script type="text/javascript">alert(document.getElementById("image").files[0].name);</script>
             </div>
         
     </div>
@@ -44,44 +45,51 @@
     <script src="../script/script.js"></script>
     <script type="text/javascript">
         function createXmlHttpRequestObject(){
-            var request;
-
-            try{
-                request = new XMLHttpRequest();
-            } catch(e){
+                var request;
+    
                 try{
-                    request = new ActiveXObject("Microsoft.XMLHttp");
+                    request = new XMLHttpRequest();
                 } catch(e){
-                    // ignore err
+                    try{
+                        request = new ActiveXObject("Microsoft.XMLHttp");
+                    } catch(e){
+                        // ignore err
+                    }
+                }
+    
+                if (!request){
+                    alert("Nepodařilo se vytvořit XMLHttpRequest.");
+                } else{
+                    return request;
                 }
             }
 
-            if (!request){
-                alert("Nepodařilo se vytvořit XMLHttpRequest.");
-            } else{
-                return request;
-            }
-        }
         function createService(){
             try{
                 var request = createXmlHttpRequestObject();
 
-                var login = document.getElementById('name').value
-                request.open("POST", "http://localhost:8080/services/", true);
-                alert("jdsj")
+                request.open("POST", "http://localhost:8080/search", true);
+                request.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+
                 request.onreadystatechange = function(){
                     if((request.readyState == 4) && (request.status == 200)){
-                    
-                    
-                    
+                        console.log("success");
                     }
-
                 }
+
+                var name = document.getElementById('name').value;
+                var desc = document.getElementById('description').value;
+                var image = document.getElementById("image").files[0].name;
+
+                var data = JSON.stringify({"name": name, "desc": desc, "imagesrc": image})
+                request.send(data);
+
             }                
             catch(e){
                 
                 alert(e.toString());
             }
+            return false;
         }
         
     </script>

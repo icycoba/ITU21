@@ -28,7 +28,7 @@
                 </ul>
             </div>
             <div class="newService">
-                <form>
+                <form onsubmit="createService()">
                     <label for="name">Název:</label><br>
                     <input type="text" id="name" name="name"><br>
                     <label for="description">Popis:</label><br>
@@ -43,7 +43,46 @@
     </body>
     <script src="../script/script.js"></script>
     <script type="text/javascript">
+        function createXmlHttpRequestObject(){
+            var request;
 
+            try{
+                request = new XMLHttpRequest();
+            } catch(e){
+                try{
+                    request = new ActiveXObject("Microsoft.XMLHttp");
+                } catch(e){
+                    // ignore err
+                }
+            }
+
+            if (!request){
+                alert("Nepodařilo se vytvořit XMLHttpRequest.");
+            } else{
+                return request;
+            }
+        }
+        function createService(){
+            try{
+                var request = createXmlHttpRequestObject();
+
+                var login = document.getElementById('name').value
+                request.open("POST", "http://localhost:8080/services/", true);
+                alert("jdsj")
+                request.onreadystatechange = function(){
+                    if((request.readyState == 4) && (request.status == 200)){
+                    
+                    
+                    
+                    }
+
+                }
+            }                
+            catch(e){
+                
+                alert(e.toString());
+            }
+        }
         
     </script>
 </html>

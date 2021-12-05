@@ -1,0 +1,56 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica;
+    color: black;
+}
+
+.newService{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    height: 300px;
+}
+
+.newService form{
+    grid-row: 1;
+    grid-column: 3;
+    justify-self: center;
+}
+
+#name{
+    width: 320px;
+    height: 25px;
+    outline-color: #1560BD;
+    border-style: solid;
+    border-color: #1560BD;
+    border-radius: 7px;
+    margin-bottom: 30px;
+    color:black;
+}
+
+#description{
+    width: 320px;
+    height: 100px;
+    outline-color: #1560BD;
+    border-style: solid;
+    border-color: #1560BD;
+    border-radius: 7px;
+    margin-bottom: 30px;
+    color:black;
+}
+
+
+#submit{
+    justify-self: center;
+    background-color: #1560bd;
+    width: 200px;
+    height: 35px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    margin-left: 19%;     
+}
+
+

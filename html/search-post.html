@@ -8,6 +8,63 @@
         <link rel="shortcut icon" type="image/x-icon" href="../images/temp_image.png">
     </head>
     
+    <script type="text/javascript">
+        function createXmlHttpRequestObject(){
+            var request;
+
+            try{
+                request = new XMLHttpRequest();
+            } catch(e){
+                try{
+                    request = new ActiveXObject("Microsoft.XMLHttp");
+                } catch(e){
+                    // ignore err
+                }
+            }
+
+            if (!request){
+                alert("Nepodařilo se vytvořit XMLHttpRequest.");
+            } else{
+                return request;
+            }
+        }
+        
+        function searchDisplay(){
+            //alert("im in")
+            try{
+                
+                var request = createXmlHttpRequestObject();
+
+                request.open("GET", "http://localhost:8080/search", true);
+                request.send(null);
+                
+                request.onreadystatechange = function(){
+                    if((request.readyState == 4) && (request.status == 200)){
+                        var response = JSON.parse(request.response)
+                        var count = Object.keys(response).length;
+                        
+                        for(var i = 0; i <= count; i++){
+                            var workingID = "item"+String(i)
+                            var workingLink = "link" + String(i)
+                            var workingImg = "img" + String(i)
+                            var workingName = "name" + String(i)
+                            var workingDesc = "desc" + String(i)
+                            
+                            document.getElementById(workingLink).href = "reservation_page-post.html?serviceid=" + String(i);
+                            document.getElementById(workingName).value = response[i].name;
+                            document.getElementById(workingDesc).value = response[i].desc;
+                            document.getElementById(workingImg).src = response[i].imagesrc;
+                            document.getElementById(workingID).style = "display: grid";
+                        }
+                    }
+                }
+            }catch(e){
+                alert(e.toString());
+            }
+            return false;
+        }
+    </script>
+
     <body>
         <div class="main">
             <div class="nav-links">
@@ -31,34 +88,73 @@
                     <input type="search" id="searchBar" name="searchBar">
                 </form>
             </div>
-            <div class="items">
-                <div class="item">
-                    <a href="reservation_page-post.html"><img src="../images/services/bank.jpg"></a>
-                    <input type="url" id="serviceName" name="serviceName" value="Temporary name" onClick="openReservationPage()" readonly>
-                    <input type="text" id="serviceDesc" name="serviceDesc" value="befelemepesevedsfrdsfsdfdsze" onClick="openReservationPage()" readonly>
+            
+            <div id="items" class="items">
+                <div id="item0" style="display:none" class="item">
+                    <a id="link0" href="reservation_page-post.html"><img id="img0" src="../images/services/bank.jpg"></a>
+                    <input id="name0" type="text" id="serviceName" name="serviceName" value="Temporary name">
+                    <input id="desc0" type="text" id="serviceDesc" name="serviceDesc" value="Temporary desc">
                 </div>
-                <div class="item">
-                    <a href="reservation_page-post.html"><img src="../images/services/bank.jpg"></a>
-                    <input type="url" id="serviceName" name="serviceName" value="Temporary name" disabled onClick="openReservationPage()" readonly>
-                    <input type="text" id="serviceDesc" name="serviceDesc" value="befelemepesevedsfrdsfsdfdsze" onClick="openReservationPage()" readonly>
+
+                <div id="item1" style="display:none" class="item">
+                    <a id="link1" href="reservation_page-post.html"><img id="img1" src="../images/services/bank.jpg"></a>
+                    <input id="name1" type="text" id="serviceName" name="serviceName" value="Temporary name">
+                    <input id="desc1" type="text" id="serviceDesc" name="serviceDesc" value="Temporary desc">
                 </div>
-                <div class="item">
-                    <a href="reservation_page-post.html"><img src="../images/services/bank.jpg"></a>
-                    <input type="url" id="serviceName" name="serviceName" value="Temporary name" onClick="openReservationPage()" readonly>
-                    <input type="text" id="serviceDesc" name="serviceDesc" value="befelemepesevedsfrdsfsdfdsze" onClick="openReservationPage()" readonly>
+
+                <div id="item2" style="display:none" class="item">
+                    <a id="link2" href="reservation_page-post.html"><img id="img2" src="../images/services/bank.jpg"></a>
+                    <input id="name2" type="text" id="serviceName" name="serviceName" value="Temporary name">
+                    <input id="desc2" type="text" id="serviceDesc" name="serviceDesc" value="Temporary desc">
                 </div>
-                <div class="item">
-                    <a href="reservation_page-post.html"><img src="../images/services/bank.jpg"></a>
-                    <input type="url" id="serviceName" name="serviceName" value="Temporary name" onClick="openReservationPage()" readonly>
-                    <input type="text" id="serviceDesc" name="serviceDesc" value="befelemepesevedsfrdsfsdfdsze" onClick="openReservationPage()" readonly>
+
+                <div id="item3" style="display:none" class="item">
+                    <a id="link3" href="reservation_page-post.html"><img id="img3" src="../images/services/bank.jpg"></a>
+                    <input id="name3" type="text" id="serviceName" name="serviceName" value="Temporary name">
+                    <input id="desc3" type="text" id="serviceDesc" name="serviceDesc" value="Temporary desc">
                 </div>
+
+                <div id="item4" style="display:none" class="item">
+                    <a id="link4" href="reservation_page-post.html"><img id="img4" src="../images/services/bank.jpg"></a>
+                    <input id="name4" type="text" id="serviceName" name="serviceName" value="Temporary name">
+                    <input id="desc4" type="text" id="serviceDesc" name="serviceDesc" value="Temporary desc">
+                </div>
+
+                <div id="item5" style="display:none" class="item">
+                    <a id="link5" href="reservation_page-post.html"><img id="img5" src="../images/services/bank.jpg"></a>
+                    <input id="name5" type="text" id="serviceName" name="serviceName" value="Temporary name">
+                    <input id="desc5" type="text" id="serviceDesc" name="serviceDesc" value="Temporary desc">
+                </div>
+
+                <div id="item6" style="display:none" class="item">
+                    <a id="link6" href="reservation_page-post.html"><img id="img6" src="../images/services/bank.jpg"></a>
+                    <input id="name6" type="text" id="serviceName" name="serviceName" value="Temporary name">
+                    <input id="desc6" type="text" id="serviceDesc" name="serviceDesc" value="Temporary desc">
+                </div>
+
+                <div id="item7" style="display:none" class="item">
+                    <a id="link7" href="reservation_page-post.html"><img id="img7" src="../images/services/bank.jpg"></a>
+                    <input id="name7" type="text" id="serviceName" name="serviceName" value="Temporary name">
+                    <input id="desc7" type="text" id="serviceDesc" name="serviceDesc" value="Temporary desc">
+                </div>
+
+                <div id="item8" style="display:none" class="item">
+                    <a id="link8" href="reservation_page-post.html"><img id="img8" src="../images/services/bank.jpg"></a>
+                    <input id="name8" type="text" id="serviceName" name="serviceName" value="Temporary name">
+                    <input id="desc8" type="text" id="serviceDesc" name="serviceDesc" value="Temporary desc">
+                </div>
+
+                <div id="item9" style="display:none" class="item">
+                    <a id="link9" href="reservation_page-post.html"><img id="img9" src="../images/services/bank.jpg"></a>
+                    <input id="name9" type="text" id="serviceName" name="serviceName" value="Temporary name">
+                    <input id="desc9" type="text" id="serviceDesc" name="serviceDesc" value="Temporary desc">
+                </div>
+                <script type="text/javascript">
+                    searchDisplay();
+                </script>
             </div>
         </div>
     </body>
     <script src="../script/script.js"></script>
-    <script type="text/javascript">
-        function openReservationPage(){
-            location.href="reservation_page-post.html";
-        }
-    </script>
+    
 </html>

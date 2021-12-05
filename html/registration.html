@@ -18,7 +18,7 @@
             </div>
             <div class="regCont">
                 <img src="../images/temp_image.png" id="tempPic">
-                <form>
+                <form onsubmit="return registerUser()">
                     <label for="regnameIn">Login</label><br>
                     <input type="text" id="regnameIn" name="regnameIn"><br>
                     <label for="emailregIn">Email</label><br>
@@ -27,15 +27,59 @@
                     <input type="password" id="newpassIn" name="newpassIn"><br><br>
 
                     <input type="file" id="imageIn" name="imageIn" accept="image/jpeg, image/png">
+                    <input type="submit" value="Zaregistrovat" id="submit">
                 </form>
-                <button>
+                <!--<button>
                     <a href="Welcome Page.html" id="confirm">Zaregistrovat se</a>
-                </button>
+                </button>-->
             </div>   
         </div>
+        <script type="text/javascript">
+            function createXmlHttpRequestObject(){
+                var request;
+    
+                try{
+                    request = new XMLHttpRequest();
+                } catch(e){
+                    try{
+                        request = new ActiveXObject("Microsoft.XMLHttp");
+                    } catch(e){
+                        // ignore err
+                    }
+                }
+    
+                if (!request){
+                    alert("Nepodařilo se vytvořit XMLHttpRequest.");
+                } else{
+                    return request;
+                }
+            }
+            
+            function registerUser(){
+                try{
+                    var request = createXmlHttpRequestObject();
+    
+                    request.open("POST", "http://localhost:8080/usersregister", true);
+                    request.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+    
+                    request.onreadystatechange = function(){
+                        if((request.readyState == 4) && (request.status == 200)){
+                            console.log("success");
+                        }
+                    }
+                    
+                    var login = document.getElementById('regnameIn').value
+                    var pw = document.getElementById('newpassIn').value
+
+                    var data = JSON.stringify({"login": login, "password": pw});
+                    request.send(data);
+                }catch(e){
+                    alert(e.toString());
+                }
+                return false;
+            }
+        </script>
     </body>
 
-    <script type="text/javascript">
-        
-    </script>
+    
 </html>

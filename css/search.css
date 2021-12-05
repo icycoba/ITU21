@@ -7,7 +7,7 @@
 .searchBar{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr);
 }
 
 .searchBar form{
@@ -35,35 +35,47 @@
     margin-left: 36%;
 }
 
-.items{
+.item{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    background-color: #1560BD;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
-.items img{
+.item img{
     width: 150px;
     height: auto;
-}
-
-.items a{
     grid-column: 2;
-    grid-row: 1 / span 2;
-    justify-self: left;
 }
 
-.items #serviceName{
+.item a{
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    justify-self: center;
+}
+
+.item #serviceName{
     color: black;
-    grid-column: 3;
+    grid-column: 3 / span 2;
     grid-row: 1;
-    justify-self: center;
+    justify-self: left;
     cursor: pointer;
+    width: 80%;
+    height: 60%;
+    border-radius: 10px;
+    border-color: #1560BD;
+    outline-color: #1560BD;
 }
 
-.items #serviceDesc{
+.item #serviceDesc{
     color: black;
-    grid-column: 3;
+    grid-column: 3 / span 2;
     grid-row: 2;
-    justify-self: center;
+    justify-self: left;
+    grid-row: 2 / span 3;
+    width: 80%;
+    border-radius: 10px;
+    border-color: #1560BD;
+    outline-color: #1560BD;
 }

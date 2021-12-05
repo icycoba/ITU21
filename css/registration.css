@@ -4,26 +4,26 @@
     font-family: Helvetica;
 }
 
-.loginCont{
+.regCont{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(6, 1fr);
     height: 300px;
 }
 
-.loginCont img{
+.regCont img{
     grid-column: 2;
     grid-row: 1 / span 2;
     justify-self: center;
 }
 
-.loginCont form{
+.regCont form{
     grid-column: 1;
     grid-row: 2;
     justify-self: center;
 }
 
-#loginIn{
+#regnameIn{
     width: 320px;
     height: 25px;
     outline-color: #1560BD;
@@ -33,7 +33,7 @@
     margin-bottom: 30px;
 }
 
-#passIn{
+#newpassIn{
     width: 320px;
     height: 25px;
     outline-color: #1560BD;
@@ -42,9 +42,23 @@
     border-radius: 7px;
 }
 
-.loginCont button{
+#emailregIn{
+    width: 320px;
+    height: 25px;
+    outline-color: #1560BD;
+    border-style: solid;
+    border-color: #1560BD;
+    border-radius: 7px;
+}
+
+#imageIn{
+    color:black;
+    
+}
+
+.regCont button{
     grid-column: 1;
-    grid-row: 4;
+    grid-row: 6;
     justify-self: center;
     background-color: #1560bd;
     width: 200px;
@@ -61,37 +75,4 @@
 label{
     color:black;
     font-size: medium;
-}
-
-.reg{
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    width: 50%;
-    border-top: solid black;
-}
-
-.reg button{
-    grid-column: 1;
-    grid-row:2;
-    justify-self: center;
-    background-color: #1560bd;
-    margin-top: 20px;
-    width: 200px;
-    height: 35px;
-    border-radius: 3px;
-    border:none;
-    cursor: pointer;
-}
-
-.reg h3{
-    grid-column: 1;
-    grid-row: 1;
-    justify-self: center;
-    color: black;
-    margin-top: 40px;
-}
-
-.reg a{
-    text-decoration: none;
 }

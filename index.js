@@ -10,7 +10,7 @@ const users = [
 
 // "Databáze" služeb
 const services = [
-    { "serviceid" : 0, "name" : "Služba", "desc" : "Popis služby", "imagesrc" : "../images/temp_image.png" }
+    //{ "serviceid" : 0, "name" : "Služba", "desc" : "Popis služby", "imagesrc" : "../images/temp_image.png" }
 ]
 
 const reggedUsers = [

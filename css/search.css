@@ -55,7 +55,7 @@
     justify-self: center;
 }
 
-.item #serviceName{
+.item .serviceName{
     color: black;
     grid-column: 3 / span 2;
     grid-row: 1;
@@ -68,7 +68,7 @@
     background: whitesmoke;
 }
 
-.item #serviceDesc{
+.item .serviceDesc{
     color: black;
     grid-column: 3 / span 2;
     grid-row: 2;

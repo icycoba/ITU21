@@ -2,11 +2,43 @@
 <html>
     <head>
         <title>Rezervační systém</title>
-        <link href="css/style.css" rel="stylesheet"/>
-        <link rel="shortcut icon" type="image/x-icon" href="images/temp_image.png">
+        <link href="../css/style.css" rel="stylesheet"/>
+        <link href="../css/info.css" rel="stylesheet"/>
+        <link rel="shortcut icon" type="image/x-icon" href="../images/temp_image.png">
     </head>
 
     <body>
-        
+        <div class="main">
+            <div class="nav-links">
+                <a href="index-post.html"><img src="../images/temp_image.png" id="logo"></a>
+                <ul>
+                    <li>
+                        <div class="dropdown">
+                            <buttom onclick="showMenu()" class="menu"><img src="../images/menu.png" id="menuPic"></buttom>
+                            <div class="dropdownctnt" id="myDropdown">
+                                <a href="welcome.html">Úvodní stránka</a>
+                                <a href="search-post.html">Vyhledávání služby</a>
+                                <a href="main_page.html">Kalendář</a>
+                                <a href="index.html">Odhlásit se</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="infoCont">
+                <table id="infoTable">
+                    <th class="titleCell">ID</th>
+                    <th class="titleCell">Jméno</th>
+                    <th class="titleCell">Email</th>
+                    <th class="titleCell">Telefon</th>
+                    <tr>
+                        <td class="contentCell">1</td>
+                        <td class="contentCell">Jan Novák</td>
+                        <td class="contentCell">novak@gmail.com</td>
+                        <td class="contentCell">Telefon</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </body>
 </html>

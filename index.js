@@ -65,7 +65,7 @@ app.get('/search', (req,res) => {
 })
 
 app.get('/search/:serviceid', (req,res) => {
-    const service = services.find(s => s.id === parseInt(req.params.serviceid));
+    const service = services.find(s => s.serviceid === parseInt(req.params.serviceid));
     if(!service) res.status(404).send("Služba nenalezena.")
     res.send(service)
 })
@@ -100,8 +100,8 @@ app.get('/usersregister', (req,res) => {
     res.send(reggedUsers)
 })
 
-app.get('/usersregister/:id', (req,res) => {
-    const user = users.find(u => u.id === parseInt(req.params.id));
+app.get('/usersregister/:login', (req,res) => {
+    const user = reggedUsers.find(u => u.login === req.params.login);
     if(!user) res.status(404).send("Uživatel nenalezen.")
     res.send(user)
 })

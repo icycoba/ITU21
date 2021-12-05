@@ -41,6 +41,7 @@
     grid-template-rows: repeat(3, 1fr);
     padding-top: 20px;
     padding-bottom: 20px;
+    
 }
 
 .item img{
@@ -63,9 +64,9 @@
     cursor: pointer;
     width: 80%;
     height: 60%;
-    border-radius: 10px;
-    border-color: #1560BD;
-    outline-color: #1560BD;
+    border: none;
+    text-decoration: underline;
+    background: whitesmoke;
 }
 
 .item #serviceDesc{
@@ -75,7 +76,8 @@
     justify-self: left;
     grid-row: 2 / span 3;
     width: 80%;
-    border-radius: 10px;
+    border-style: solid;
     border-color: #1560BD;
-    outline-color: #1560BD;
+    border-radius: 10px;
 }
+

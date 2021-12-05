@@ -20,7 +20,7 @@
 
 .regCont form{
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 6;
     justify-self: center;
 }
 

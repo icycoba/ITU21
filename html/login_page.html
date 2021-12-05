@@ -12,8 +12,8 @@
             <div class="nav-links">
                     <a href="index.html"><img src="../images/temp_image.png" id="logo"></a>
                 <ul>
-                    <li><a href="Login Page.html">Přihlásit se</a></li>
-                    <li><a href="Learn more Page.html">Dozvedět se víc</a></li>
+                    <li><a href="login_page.html">Přihlásit se</a></li>
+                    <li><a href="learnmore-pre.html">Dozvedět se víc</a></li>
                 </ul>
             </div>
             <div class="loginCont">
@@ -62,7 +62,6 @@
                 var request = createXmlHttpRequestObject();
 
                 var login = document.getElementById('loginIn').value
-                alert("http://localhost:8080/usersregister/" + login)
                 request.open("GET", "http://localhost:8080/usersregister/" + login, true);
                 request.send(null);
 
@@ -74,8 +73,10 @@
                         //alert(response.password)
                         const inputPW = document.getElementById('passIn').value;
                         if(response.password === inputPW){
+                            window.location.href = "Welcome Page.html";
                             return true;
                         } else {
+                            alert("Jméno nebo heslo byly zadány špatně!")
                             return false;
                         }
                     }

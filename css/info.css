@@ -4,3 +4,19 @@
     font-family: Helvetica; 
     color: black; 
 }
+
+#infoTable{
+    width: 100%;
+}
+
+.contentCell{
+    border: 1px solid;
+    cursor:pointer;
+    border-color: #1560BD;
+}
+
+.titleCell{
+    border-right: solid;
+    border-width: 1px;
+    border-color: #1560BD;
+}

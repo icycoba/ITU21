@@ -31,7 +31,7 @@
     border-style: solid;
     border-color: #1560BD;
     border-radius: 7px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 #newpassIn{
@@ -66,6 +66,7 @@
     border: none;
     cursor: pointer;
     color: white;
+    margin-left: 19%;
 }
 
 #confirm{

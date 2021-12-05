@@ -10,7 +10,7 @@ const users = [
 
 // "Databáze" služeb
 const services = [
-    { "serviceid" : 0, "name" : "Služba", "desc" : "Popis služby", "imagesrc" : "../images/temp_image.png" }
+    //{ "serviceid" : 0, "name" : "Služba", "desc" : "Popis služby", "imagesrc" : "../images/temp_image.png" }
 ]
 
 const reggedUsers = [
@@ -73,7 +73,7 @@ app.get('/search/:serviceid', (req,res) => {
 app.post('/search', (req,res) => {
     const serviceid = services.length;
     const {name} = req.body;
-    const {desc} = req.body;
+    var {desc} = req.body;
     const {imagesrc} = req.body;
 
     if(!imagesrc){
@@ -87,6 +87,11 @@ app.post('/search', (req,res) => {
 
     if(!name){
         res.status(418).send({message: 'Potrebuju jmeno'});
+    }
+
+    if(desc.length > 70){
+        desc = desc.slice(0,70)
+        desc = desc.concat("...")
     }
 
     services.push({"serviceid" : parseInt(serviceid), "name" : name, "desc" : desc, "imagesrc" : imagesrc});

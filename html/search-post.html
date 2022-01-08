@@ -154,12 +154,16 @@
             </div>
             <script type="text/javascript">
                 searchDisplay();
+                interval = setInterval(searchDisplay, 5000);
             </script>
         </div>
     </body>
     <script src="../script/script.js"></script>
     <script type="text/javascript">
         function lookupFunc(){
+            if(interval){
+                clearInterval(interval);
+            }
             let input = document.getElementById('searchBar').value
             input = input.toLowerCase();
             
@@ -177,6 +181,10 @@
                 } else{
                     document.getElementById(tempitemID).style = "display: none";
                 }
+            }
+            if(input == ""){
+                searchDisplay();
+                interval = setInterval(searchDisplay, 5000);
             }
         }
     </script>

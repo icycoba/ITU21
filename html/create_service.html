@@ -43,7 +43,8 @@
                     </div>
                     <input type="submit" value="Vytvořit" id="submit">
                 </form>
-                <script type="text/javascript">alert(document.getElementById("image").files[0].name);</script>
+                <!--<script type="text/javascript">alert(document.getElementById("image").files[0].name);</script>-->
+                <script type="text/javascript">var globalID = "../images/services/bank.jpg"</script>
             </div>
         
     </div>
@@ -52,13 +53,16 @@
     <script type="text/javascript">
 
         function changeBorder(id){
+            
             var elem = document.getElementsByClassName("imS")
             for(var i = 0; i < elem.length; i++){
                 elem[i].style.border = "0px";
             }
             var element = document.getElementById(id);
-            element.style.border = "2px solid #1560BD"
+            globalID = document.getElementById(id).src;
             
+            element.style.border = "2px solid #1560BD"
+            //alert(globalID)
         }
 
         function createXmlHttpRequestObject(){
@@ -91,12 +95,13 @@
                 request.onreadystatechange = function(){
                     if((request.readyState == 4) && (request.status == 200)){
                         console.log("success");
+                        window.location.href = "search-post.html";
                     }
                 }
 
                 var name = document.getElementById('name').value;
                 var desc = document.getElementById('description').value;
-                var image = document.getElementById("image").files[0].name;
+                var image = globalID//document.getElementById("image").files[0].name;
 
                 var data = JSON.stringify({"name": name, "desc": desc, "imagesrc": image})
                 request.send(data);

@@ -33,8 +33,14 @@
                     <input type="text" id="name" name="name"><br>
                     <label for="description">Popis:</label><br>
                     <input type="text" id="description" name="description"><br>
-                    <label for="image">Fotka:</label>
-                    <input type="file" id="image" name="image" accept="image/jpeg, image/png"><br><br>
+                    <label for="image">Fotka:</label><br>
+                    <!--<input type="file" id="image" name="image" accept="image/jpeg, image/png"><br><br>-->
+                    <div class="pictures"><br>
+                        <img src="../images/services/hospital.jpg" alt="hospital" width="260" height="160" id="im1" onclick="changeBorder(this.id)">
+                        <img src="../images/services/kadernictvi.png" alt="kadernictvi" width="260" height="160" id="im2" onclick="changeBorder(this.id)"><br>
+                        <img src="../images/services/massage.jpg" alt="massage" width="260" height="160" id="im3" onclick="changeBorder(this.id)">
+                        <img src="../images/services/working_tools.jfif" alt="tools" width="260" height="160" id="im4"onclick="changeBorder(this.id)"><br><br>
+                    </div>
                     <input type="submit" value="Vytvořit" id="submit">
                 </form>
                 <script type="text/javascript">alert(document.getElementById("image").files[0].name);</script>
@@ -44,6 +50,15 @@
     </body>
     <script src="../script/script.js"></script>
     <script type="text/javascript">
+
+        function changeBorder(id){
+            var elem = document.getElementsByClassName("pictures")
+            elem.style.border = "none"
+            var element = document.getElementById(id);
+            element.style.border = "2px solid #1560BD"
+            
+        }
+
         function createXmlHttpRequestObject(){
                 var request;
     

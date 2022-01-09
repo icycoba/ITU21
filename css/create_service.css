@@ -40,8 +40,8 @@
     color:black;
 }
 
-#image{
-    margin-left: 40px;
+.pictures img{
+    border: none;
 }
 
 input #description{

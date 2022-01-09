@@ -8,6 +8,63 @@
         <link rel="shortcut icon" type="image/x-icon" href="../images/temp_image.png">
     </head>
 
+    <script type="text/javascript">
+        function createXmlHttpRequestObject(){
+            var request;
+
+            try{
+                request = new XMLHttpRequest();
+            } catch(e){
+                try{
+                    request = new ActiveXObject("Microsoft.XMLHttp");
+                } catch(e){
+                    // ignore err
+                }
+            }
+
+            if (!request){
+                alert("Nepodařilo se vytvořit XMLHttpRequest.");
+            } else{
+                return request;
+            }
+        }
+        
+        function searchDisplay(){
+            //alert("im in")
+            try{
+                
+                var request = createXmlHttpRequestObject();
+
+                request.open("GET", "http://localhost:8080/reservation", true);
+                request.send(null);
+                
+                request.onreadystatechange = function(){
+                    if((request.readyState == 4) && (request.status == 200)){
+                        var response = JSON.parse(request.response)
+                        var count = Object.keys(response).length;
+                        
+                        for(var i = 0; i <= count; i++){
+                            var workingID = "item"+String(i)
+                            var workingLink = "link" + String(i)
+                            var workingImg = "img" + String(i)
+                            var workingName = "name" + String(i)
+                            var workingDesc = "desc" + String(i)
+                            
+                            document.getElementById(workingLink).href = "reservation_page-post.html?serviceid=" + String(i);
+                            document.getElementById(workingName).value = response[i].name;
+                            document.getElementById(workingDesc).value = response[i].desc;
+                            document.getElementById(workingImg).src = response[i].imagesrc;
+                            document.getElementById(workingID).style = "display: grid";
+                        }
+                    }
+                }
+            }catch(e){
+                alert(e.toString());
+            }
+            return false;
+        }
+    </script>
+
     <body>
         <div class="main">
             <div class="nav-links">
@@ -32,12 +89,13 @@
                     <th class="titleCell">Jméno</th>
                     <th class="titleCell">Email</th>
                     <th class="titleCell">Telefon</th>
-                    <tr>
-                        <td class="contentCell">1</td>
-                        <td class="contentCell">Jan Novák</td>
-                        <td class="contentCell">novak@gmail.com</td>
-                        <td class="contentCell">Telefon</td>
-                    </tr>
+                    <script type="text/javascript">
+                    for(let i = 1; i <= 100; i++){
+                    document.write(`<tr><td style="display:none" class="contentCell">${i}</td><td style="display:none" class="contentCell">Jan Novák</td><td style="display:none" class="contentCell">novak@gmail.com</td><td style="display:none" class="contentCell">Telefon</td></tr>`)
+                    }
+                    usersDisplay();
+                    </script>
+                    
                 </table>
             </div>
         </div>

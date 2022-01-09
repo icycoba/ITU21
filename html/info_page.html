@@ -29,7 +29,7 @@
             }
         }
         
-        function searchDisplay(){
+        function usersDisplay(){
             //alert("im in")
             try{
                 
@@ -41,20 +41,27 @@
                 request.onreadystatechange = function(){
                     if((request.readyState == 4) && (request.status == 200)){
                         var response = JSON.parse(request.response)
+                        //alert(response[0].name)
                         var count = Object.keys(response).length;
-                        
+                        id = getQuery(window.location.href)
+                        serviceID = id[1].split("=")[1]
+                        id = id[0].split("=")[1]
                         for(var i = 0; i <= count; i++){
-                            var workingID = "item"+String(i)
-                            var workingLink = "link" + String(i)
-                            var workingImg = "img" + String(i)
+                            if(id != response[i].cellid || serviceID != response[i].serviceid){
+                                continue
+                            }
+                            var workingID = "table" + String(i)
+                            var workingEmail = "email" + String(i)
                             var workingName = "name" + String(i)
-                            var workingDesc = "desc" + String(i)
+                            var workingPhone = "phone" + String(i)
                             
-                            document.getElementById(workingLink).href = "reservation_page-post.html?serviceid=" + String(i);
-                            document.getElementById(workingName).value = response[i].name;
-                            document.getElementById(workingDesc).value = response[i].desc;
-                            document.getElementById(workingImg).src = response[i].imagesrc;
-                            document.getElementById(workingID).style = "display: grid";
+
+
+                            //document.getElementById(workingLink).href = "reservation_page-post.html?serviceid=" + String(i);
+                            document.getElementById(workingName).innerHTML = response[i].name;
+                            document.getElementById(workingEmail).innerHTML = response[i].email;
+                            document.getElementById(workingPhone).innerHTML = response[i].phonenum;
+                            document.getElementById(workingID).style = "display: normal";
                         }
                     }
                 }
@@ -62,6 +69,15 @@
                 alert(e.toString());
             }
             return false;
+        }
+
+        function getQuery(element){
+            try{
+                firstPart = element.split("?")[1];
+                return firstPart.split("&");
+            } catch (e){
+                return element;
+            }
         }
     </script>
 
@@ -90,8 +106,8 @@
                     <th class="titleCell">Email</th>
                     <th class="titleCell">Telefon</th>
                     <script type="text/javascript">
-                    for(let i = 1; i <= 100; i++){
-                    document.write(`<tr><td style="display:none" class="contentCell">${i}</td><td style="display:none" class="contentCell">Jan Novák</td><td style="display:none" class="contentCell">novak@gmail.com</td><td style="display:none" class="contentCell">Telefon</td></tr>`)
+                    for(let i = 0; i < 100; i++){
+                    document.write(`<tr id="table${i}" style="display:none"><td class="contentCell">${i}</td><td id="name${i}" class="contentCell">Jan Novák</td><td id="email${i}" class="contentCell">novak@gmail.com</td><td id="phone${i}" class="contentCell">Telefon</td></tr>`)
                     }
                     usersDisplay();
                     </script>

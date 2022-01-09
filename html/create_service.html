@@ -36,10 +36,10 @@
                     <label for="image">Fotka:</label><br>
                     <!--<input type="file" id="image" name="image" accept="image/jpeg, image/png"><br><br>-->
                     <div class="pictures"><br>
-                        <img src="../images/services/hospital.jpg" alt="hospital" width="260" height="160" id="im1" onclick="changeBorder(this.id)">
-                        <img src="../images/services/kadernictvi.png" alt="kadernictvi" width="260" height="160" id="im2" onclick="changeBorder(this.id)"><br>
-                        <img src="../images/services/massage.jpg" alt="massage" width="260" height="160" id="im3" onclick="changeBorder(this.id)">
-                        <img src="../images/services/working_tools.jfif" alt="tools" width="260" height="160" id="im4"onclick="changeBorder(this.id)"><br><br>
+                        <img src="../images/services/hospital.jpg" alt="hospital" width="260" height="160" id="im1" class="imS" onclick="changeBorder(this.id)">
+                        <img src="../images/services/kadernictvi.png" alt="kadernictvi" width="260" height="160" id="im2" class="imS" onclick="changeBorder(this.id)"><br>
+                        <img src="../images/services/massage.jpg" alt="massage" width="260" height="160" id="im3" class="imS" onclick="changeBorder(this.id)">
+                        <img src="../images/services/working_tools.jfif" alt="tools" width="260" height="160" id="im4" class="imS" onclick="changeBorder(this.id)"><br><br>
                     </div>
                     <input type="submit" value="Vytvořit" id="submit">
                 </form>
@@ -52,8 +52,10 @@
     <script type="text/javascript">
 
         function changeBorder(id){
-            var elem = document.getElementsByClassName("pictures")
-            elem.style.border = "none"
+            var elem = document.getElementsByClassName("imS")
+            for(var i = 0; i < elem.length; i++){
+                elem[i].style.border = "0px";
+            }
             var element = document.getElementById(id);
             element.style.border = "2px solid #1560BD"
             

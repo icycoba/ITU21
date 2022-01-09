@@ -8,6 +8,79 @@
         <link rel="shortcut icon" type="image/x-icon" href="../images/logo.png">
     </head>
 
+    <script type="text/javascript">
+        function createXmlHttpRequestObject(){
+            var request;
+
+            try{
+                request = new XMLHttpRequest();
+            } catch(e){
+                try{
+                    request = new ActiveXObject("Microsoft.XMLHttp");
+                } catch(e){
+                    // ignore err
+                }
+            }
+
+            if (!request){
+                alert("Nepodařilo se vytvořit XMLHttpRequest.");
+            } else{
+                return request;
+            }
+        }
+        
+        function usersDisplay(){
+            //alert("im in")
+            try{
+                
+                var request = createXmlHttpRequestObject();
+
+                request.open("GET", "http://localhost:8080/reservation", true);
+                request.send(null);
+                
+                request.onreadystatechange = function(){
+                    if((request.readyState == 4) && (request.status == 200)){
+                        var response = JSON.parse(request.response)
+                        //alert(response[0].name)
+                        var count = Object.keys(response).length;
+                        id = getQuery(window.location.href)
+                        serviceID = id[1].split("=")[1]
+                        id = id[0].split("=")[1]
+                        for(var i = 0; i <= count; i++){
+                            if(id != response[i].cellid || serviceID != response[i].serviceid){
+                                continue
+                            }
+                            var workingID = "table" + String(i)
+                            var workingEmail = "email" + String(i)
+                            var workingName = "name" + String(i)
+                            var workingPhone = "phone" + String(i)
+                            
+
+
+                            //document.getElementById(workingLink).href = "reservation_page-post.html?serviceid=" + String(i);
+                            document.getElementById(workingName).innerHTML = response[i].name;
+                            document.getElementById(workingEmail).innerHTML = response[i].email;
+                            document.getElementById(workingPhone).innerHTML = response[i].phonenum;
+                            document.getElementById(workingID).style = "display: normal";
+                        }
+                    }
+                }
+            }catch(e){
+                alert(e.toString());
+            }
+            return false;
+        }
+
+        function getQuery(element){
+            try{
+                firstPart = element.split("?")[1];
+                return firstPart.split("&");
+            } catch (e){
+                return element;
+            }
+        }
+    </script>
+
     <body>
         <div class="main">
             <div class="nav-links">
@@ -33,12 +106,13 @@
                     <th class="titleCell">Jméno</th>
                     <th class="titleCell">Email</th>
                     <th class="titleCell">Telefon</th>
-                    <tr>
-                        <td class="contentCell">1</td>
-                        <td class="contentCell">Jan Novák</td>
-                        <td class="contentCell">novak@gmail.com</td>
-                        <td class="contentCell">Telefon</td>
-                    </tr>
+                    <script type="text/javascript">
+                    for(let i = 0; i < 100; i++){
+                    document.write(`<tr id="table${i}" style="display:none"><td class="contentCell">${i}</td><td id="name${i}" class="contentCell">Jan Novák</td><td id="email${i}" class="contentCell">novak@gmail.com</td><td id="phone${i}" class="contentCell">Telefon</td></tr>`)
+                    }
+                    usersDisplay();
+                    </script>
+                    
                 </table>
             </div>
         </div>

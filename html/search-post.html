@@ -49,12 +49,14 @@
                             var workingImg = "img" + String(i)
                             var workingName = "name" + String(i)
                             var workingDesc = "desc" + String(i)
+                            var workingEdit = "edit" + String(i)
                             
                             document.getElementById(workingLink).href = "reservation_page-post.html?serviceid=" + String(i);
                             document.getElementById(workingName).value = response[i].name;
                             document.getElementById(workingDesc).value = response[i].desc;
                             document.getElementById(workingImg).src = response[i].imagesrc;
                             document.getElementById(workingID).style = "display: grid";
+                            document.getElementById(workingEdit).href = "main_page.html?serviceid=" + String(i);
                         }
                     }
                 }
@@ -95,70 +97,70 @@
                     <a id="link0" href="reservation_page-post.html"><img id="img0" src="../images/services/silueta_domu.jpg"></a>
                     <input id="name0" type="text" class="serviceName" name="serviceName" value="" readonly>
                     <input id="desc0" type="text" class="serviceDesc" name="serviceDesc" value="Temporary desc" readonly>
-                    <button><a href="main_page.html">Upravit</a></button>
+                    <button><a id="edit0" href="main_page.html">Upravit</a></button>
                 </div>
 
                 <div id="item1" style="display:none" class="item">
                     <a id="link1" href="reservation_page-post.html"><img id="img1" src="../images/services/silueta_domu.jpg"></a>
                     <input id="name1" type="text" class="serviceName" name="serviceName" value="" readonly>
                     <input id="desc1" type="text" class="serviceDesc" name="serviceDesc" value="Temporary desc" readonly>
-                    <button><a href="main_page.html">Upravit</a></button>
+                    <button><a id="edit1" href="main_page.html">Upravit</a></button>
                 </div>
 
                 <div id="item2" style="display:none" class="item">
                     <a id="link2" href="reservation_page-post.html"><img id="img2" src="../images/services/silueta_domu.jpg"></a>
                     <input id="name2" type="text" class="serviceName" name="serviceName" value="" readonly>
                     <input id="desc2" type="text" class="serviceDesc" name="serviceDesc" value="Temporary desc" readonly>
-                    <button><a href="main_page.html">Upravit</a></button>
+                    <button><a id="edit2" href="main_page.html">Upravit</a></button>
                 </div>
 
                 <div id="item3" style="display:none" class="item">
                     <a id="link3" href="reservation_page-post.html"><img id="img3" src="../images/services/silueta_domu.jpg"></a>
                     <input id="name3" type="text" class="serviceName" name="serviceName" value="" readonly>
                     <input id="desc3" type="text" class="serviceDesc" name="serviceDesc" value="Temporary desc" readonly>
-                    <button><a href="main_page.html">Upravit</a></button>
+                    <button><a id="edit3" href="main_page.html">Upravit</a></button>
                 </div>
 
                 <div id="item4" style="display:none" class="item">
                     <a id="link4" href="reservation_page-post.html"><img id="img4" src="../images/services/silueta_domu.jpg"></a>
                     <input id="name4" type="text" class="serviceName" name="serviceName" value="" readonly>
                     <input id="desc4" type="text" class="serviceDesc" name="serviceDesc" value="Temporary desc" readonly>
-                    <button><a href="main_page.html">Upravit</a></button>
+                    <button><a id="edit4" href="main_page.html">Upravit</a></button>
                 </div>
 
                 <div id="item5" style="display:none" class="item">
                     <a id="link5" href="reservation_page-post.html"><img id="img5" src="../images/services/silueta_domu.jpg"></a>
                     <input id="name5" type="text" class="serviceName" name="serviceName" value="" readonly>
                     <input id="desc5" type="text" class="serviceDesc" name="serviceDesc" value="Temporary desc" readonly>
-                    <button><a href="main_page.html">Upravit</a></button>
+                    <button><a id="edit5" href="main_page.html">Upravit</a></button>
                 </div>
 
                 <div id="item6" style="display:none" class="item">
                     <a id="link6" href="reservation_page-post.html"><img id="img6" src="../images/services/silueta_domu.jpg"></a>
                     <input id="name6" type="text" class="serviceName" name="serviceName" value="" readonly>
                     <input id="desc6" type="text" class="serviceDesc" name="serviceDesc" value="Temporary desc" readonly>
-                    <button><a href="main_page.html">Upravit</a></button>
+                    <button><a id="edit6" href="main_page.html">Upravit</a></button>
                 </div>
 
                 <div id="item7" style="display:none" class="item">
                     <a id="link7" href="reservation_page-post.html"><img id="img7" src="../images/services/silueta_domu.jpg"></a>
                     <input id="name7" type="text" class="serviceName" name="serviceName" value="" readonly>
                     <input id="desc7" type="text" class="serviceDesc" name="serviceDesc" value="Temporary desc" readonly>
-                    <button><a href="main_page.html">Upravit</a></button>
+                    <button><a id="edit7" href="main_page.html">Upravit</a></button>
                 </div>
 
                 <div id="item8" style="display:none" class="item">
                     <a id="link8" href="reservation_page-post.html"><img id="img8" src="../images/services/silueta_domu.jpg"></a>
                     <input id="name8" type="text" class="serviceName" name="serviceName" value="" readonly>
                     <input id="desc8" type="text" class="serviceDesc" name="serviceDesc" value="Temporary desc" readonly>
-                    <button><a href="main_page.html">Upravit</a></button>
+                    <button><a id="edit8" href="main_page.html">Upravit</a></button>
                 </div>
 
                 <div id="item9" style="display:none" class="item">
                     <a id="link9" href="reservation_page-post.html"><img id="img9" src="../images/services/silueta_domu.jpg"></a>
                     <input id="name9" type="text" class="serviceName" name="serviceName" value="" readonly>
                     <input id="desc9" type="text" class="serviceDesc" name="serviceDesc" value="Temporary desc" readonly>
-                    <button><a href="main_page.html">Upravit</a></button>
+                    <button><a id="edit9" href="main_page.html">Upravit</a></button>
                 </div>
                 
             </div>

@@ -28,9 +28,11 @@
 }
 
 .introCont img{
-    grid-column: 5 / span 9;
+    width: 570px;
+    height: 500px;
+    grid-column: 6 / span 9;
     grid-row: 1 / span 3;
-    justify-self: center;
+    justify-self: right;
 }
 
 .infoCont{
@@ -53,9 +55,11 @@
 }
 
 .infoCont img{
+    width: 570px;
+    height:500px;
     grid-column: 1 / span 5;
     grid-row: 1 / span 3;
-    justify-self: center;
+    justify-self: left;
 }
 
 @media only screen and (max-width: 991px) {

@@ -1,0 +1,16 @@
+.item button{
+    justify-self: center;
+    background-color: #1560bd;
+    width: 200px;
+    height: 35px;
+    border-radius: 3px;
+    border: none;
+    cursor: pointer;
+    color: white;    
+    grid-row: 2;
+    grid-column: 4 / span 2;
+}
+
+.item button a{
+    text-decoration: none;
+}

@@ -72,6 +72,10 @@
     margin-left: 19%;
 }
 
+#submit:hover{
+    background-color: #5b8fd0;
+}
+
 #confirm{
     text-decoration: none;
 }

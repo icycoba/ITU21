@@ -62,6 +62,10 @@
        
 }
 
+#submit:hover{
+    background-color: #5b8fd0;
+}
+
 label{
     color:black;
     font-size: medium;
@@ -88,6 +92,10 @@ label{
     cursor: pointer;
     color: white;
     
+}
+
+.reg button:hover{
+    background-color: #5b8fd0;
 }
 
 .reg h3{

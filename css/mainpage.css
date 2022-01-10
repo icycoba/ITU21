@@ -16,3 +16,7 @@
     border: none;
     cursor: pointer;
 }
+
+.weekSwitch button:hover{
+    background-color: #5b8fd0;
+}

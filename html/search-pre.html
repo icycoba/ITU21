@@ -50,7 +50,7 @@
                             var workingName = "name" + String(i)
                             var workingDesc = "desc" + String(i)
                             
-                            document.getElementById(workingLink).href = "reservation_page-post.html?serviceid=" + String(i);
+                            document.getElementById(workingLink).href = "reservation_page-pre.html?serviceid=" + String(i);
                             document.getElementById(workingName).value = response[i].name;
                             document.getElementById(workingDesc).value = response[i].desc;
                             document.getElementById(workingImg).src = response[i].imagesrc;

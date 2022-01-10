@@ -61,4 +61,6 @@ input #description{
     margin-left: 30%;     
 }
 
-
+#submit:hover{
+    background-color: #5b8fd0;
+}

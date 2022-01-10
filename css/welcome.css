@@ -26,7 +26,7 @@
     justify-self: center;
 }
 
-.welcomeCont #button2{
+.welcomeCont #button1{
     grid-column: 2;
     grid-row: 4;
     justify-self: center;
@@ -36,6 +36,10 @@
     border-radius: 3px;
     border:none;
     cursor: pointer;
+}
+
+.welcomeCont #button1:hover{
+    background-color: #5b8fd0;
 }
 
 #search,#cal{
@@ -56,7 +60,7 @@
     }
 
 
-    .welcomeCont #button2 {
+    .welcomeCont #button1 {
         grid-column: 3;
         grid-row: 3;
         justify-self: center;

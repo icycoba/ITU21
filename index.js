@@ -117,6 +117,15 @@ app.patch('/search/:serviceID', (req,res) => {
     if (request.imagesrc){
         services[parseInt(req.params.serviceID)]["imagesrc"] = request.imagesrc
     }
+    if(request.capacity){
+        services[parseInt(req.params.serviceID)]["capacity"] = request.capacity
+    }
+    if(request.beginHours){
+        services[parseInt(req.params.serviceID)]["beginHours"] = request.beginHours
+    }
+    if(request.endHours){
+        services[parseInt(req.params.serviceID)]["endHours"] = request.endHours
+    }
 })
 
 app.get('/usersregister', (req,res) => {

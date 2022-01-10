@@ -110,8 +110,11 @@
                 var name = document.getElementById('name').value;
                 var desc = document.getElementById('description').value;
                 var image = globalID//document.getElementById("image").files[0].name;
+                var capacity = document.getElementById('capacity').value;
+                var beginHours = document.getElementById('from').value;
+                var endHours = document.getElementById('to').value;
 
-                var data = JSON.stringify({"name": name, "desc": desc, "imagesrc": image})
+                var data = JSON.stringify({"name": name, "desc": desc, "imagesrc": image, "capacity": capacity, "beginHours": beginHours, "endHours": endHours})
                 request.send(data);
                 return false;
 

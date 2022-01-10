@@ -61,21 +61,6 @@
                 return request;
             }
         }
-        /*
-        function getReservation(id, request){
-            url = "http://localhost:8080/reservation/" + String(id)
-            request.open("GET", url, true);
-            request.send(null);
-
-            request.onreadystatechange = function(){
-                    if((request.readyState == 4) && (request.status == 200)){
-                        console.log("success");
-                        var response = JSON.parse(request.response)
-                        
-                        return response.used;
-                    }
-            }
-        }*/
 
         function postReservation(element){
             element.split("?")[1];
@@ -100,21 +85,15 @@
                         window.location.href = "search-post.html";
                     }
                 }
-                    
-                //var login = document.getElementById('regnameIn').value
-                //var email = document.getElementById('emailregIn').value
-                //var pw = document.getElementById('newpassIn').value
 
                 var data = JSON.stringify({"cellid": id, "serviceid": serviceid, "name": name, "email": email, "phonenum": tel, "date": "0", "time": "0"});
                 
                 request.send(data);
                 return false;
-                    
             }catch(e){
                 alert(e.toString());
             }
             return false;
-            //alert(name + email + tel + serviceid + id)
         }
     </script>
 </html>

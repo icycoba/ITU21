@@ -102,6 +102,15 @@ app.post('/search', (req,res) => {
     })
 })
 
+app.patch('/search/:serviceID', (req,res) => {
+    try{
+        const id = req.params.id;
+    }catch(e){
+        console.log(e);
+        res.status(404).send("Služba nenalezena")
+    }
+})
+
 app.get('/usersregister', (req,res) => {
     res.send(reggedUsers)
 })

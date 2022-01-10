@@ -5,7 +5,7 @@ const PORT = 8080;
 
 // "Databáze" buněk
 const cells = [
-    { "id": 0, "cellid" : 0, "serviceid": 0, "date": "00.00.0000", "time": "0000", "name": "Jane Doe", "email": "JaneDoe@email.com", "phonenum": "000000000000", "capacity" : 0 }
+    { "id": 0, "cellid" : 0, "serviceid": 0, "date": "00.00.0000", "time": "0000", "name": "Jane Doe", "email": "JaneDoe@email.com", "phonenum": "000000000000"}
 ]
 
 // "Databáze" služeb
@@ -21,7 +21,7 @@ app.use(express.json())
 
 app.use(function (req,res,next){
     res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5500');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
     next();
 })
@@ -76,6 +76,10 @@ app.post('/search', (req,res) => {
     const {name} = req.body;
     var {desc} = req.body;
     const {imagesrc} = req.body;
+    const {capacity} = req.body;
+    const {beginHours} = req.body;
+    const {endHours} = req.body;
+    
 
     if(!imagesrc){
         imagesrc = "images/temp_image.png";
@@ -83,8 +87,6 @@ app.post('/search', (req,res) => {
     if(!desc){
         desc = "Popisek neni dostupny"
     }
-
-    
 
     if(!name){
         res.status(418).send({message: 'Potrebuju jmeno'});
@@ -95,19 +97,25 @@ app.post('/search', (req,res) => {
         desc = desc.concat("...")
     }
 
-    services.push({"serviceid" : parseInt(serviceid), "name" : name, "desc" : desc, "imagesrc" : imagesrc});
+    services.push({"serviceid" : parseInt(serviceid), "name" : name, "desc" : desc, "imagesrc" : imagesrc, "capacity" : capacity, "beginHours": beginHours, "endHours":endHours});
 
     res.send({
-        sluzbos : `Služba ID: ${serviceid}, jmeno: ${name}, popis: ${desc}, imagesrc: ${imagesrc}`
+        sluzbos : `Služba ID: ${serviceid}, jmeno: ${name}, popis: ${desc}, imagesrc: ${imagesrc}, capacity: ${capacity}, begin-end hours ${beginHours}, ${endHours}`
     })
 })
 
 app.patch('/search/:serviceID', (req,res) => {
-    try{
-        const id = req.params.id;
-    }catch(e){
-        console.log(e);
-        res.status(404).send("Služba nenalezena")
+    const service = services.find(s => s.serviceid === parseInt(req.params.serviceid));
+    if(!service) res.status(404).send("Služba nenalezena.")
+    const request = req.body
+    if (request.name){
+        services[parseInt(req.params.serviceID)]["name"] = request.name
+    }
+    if (request.desc){
+        services[parseInt(req.params.serviceID)]["desc"] = request.desc
+    }
+    if (request.imagesrc){
+        services[parseInt(req.params.serviceID)]["imagesrc"] = request.imagesrc
     }
 })
 

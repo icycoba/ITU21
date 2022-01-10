@@ -9,6 +9,100 @@
         <link rel="shortcut icon" type="image/x-icon" href="../images/logo.png">
     </head>
     
+    <script type="text/javascript">
+        beginHours = 0
+        endHours = 23
+        capacity = 0
+        function createXmlHttpRequestObject(){
+            var request;
+
+            try{
+                request = new XMLHttpRequest();
+            } catch(e){
+                try{
+                    request = new ActiveXObject("Microsoft.XMLHttp");
+                } catch(e){
+                    // ignore err
+                }
+            }
+
+            if (!request){
+                alert("Nepodařilo se vytvořit XMLHttpRequest.");
+            } else{
+                return request;
+            }
+        }
+        
+        function downloadForm(){
+            try{
+                var request = createXmlHttpRequestObject()
+                var serviceid = (window.location.href).split("?")[1].split("=")[1]
+                request.open("GET", `http://localhost:8080/search/${serviceid}`)
+                request.send(null)
+
+                request.onreadystatechange = function(){
+                    if((request.readyState == 4) && (request.status == 200)){
+                        var response = JSON.parse(request.response)
+                        beginHours = parseInt(response.beginHours);
+                        endHours = parseInt(response.endHours);
+                        capacity = response.capacity;
+                        let i = beginHours
+                        for(i; i<=endHours; i++){
+                            document.getElementById(`time${i}`).style = "display: normal";
+                        }
+                        var contCell = document.getElementsByClassName('contCell')
+                    }
+                }
+            }catch(e){
+                alert(e.toString());
+            }
+            return false
+        }
+
+        function updateCapacity(){
+            try{
+                
+                var request = createXmlHttpRequestObject();
+
+                request.open("GET", "http://localhost:8080/reservation", true);
+                request.send(null);
+                
+                request.onreadystatechange = function(){
+                    if((request.readyState == 4) && (request.status == 200)){
+                        var response = JSON.parse(request.response)
+                        var count = Object.keys(response).length;
+                        var serviceid = (window.location.href).split("?")[1].split("=")[1]
+                        var contCell = document.getElementsByClassName('contCell')
+                        
+                        var tempArray = new Array(169).fill(0)
+                        for(var j = 0; j < count; j++){
+                            if(serviceid != response[j].serviceid){
+                                continue
+                            }
+                            
+                            for(let i = beginHours*7; i <= endHours*7+7; i++){
+                                try{
+                                    if(parseInt(response[j].cellid) == parseInt(contCell[i].id)){
+                                        tempArray[i]++;
+                                        break
+                                    }
+                                } catch(e){
+                                    //alert(e.toString())
+                                }
+                            }
+                        }
+                        for(let i = beginHours*7; i <= endHours*7+7; i++){
+                            contCell[i].innerHTML = `${tempArray[i]}/${capacity}`
+                        }
+                    }
+                }
+            }catch(e){
+                alert(e.toString());
+            }
+            return false;
+        }
+    </script>
+
     <body>
         <div class="main">
             <div class="nav-links">
@@ -32,7 +126,7 @@
                 <buttom class="leftArrow"><img src="../images/arrow.png" id="leftArr"></buttom>
                 <input type="week" id="weekBar" name="weekBar">
                 <buttom class="rightArrow"><img src="../images/arrow.png" id="rightArr"></buttom>
-                <button id="editCal">Upravit</button>
+                <button onclick="location.href='update_service.html?' + getQuery(window.location.href);" id="editCal">Upravit</button>
             </div>
             <div class='calendarCont'>
                 <table id="calendar">
@@ -44,7 +138,7 @@
                     <th class="titleCell">Pátek</th>
                     <th class="titleCell">Sobota</th>
                     <th class="titleCell">Neděle</th>
-                    <tr>
+                    <tr style="display:none" id="time0">
                         <th class="timeCell">00:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="1"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="2"></td>
@@ -54,7 +148,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="6"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="7"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time1">
                         <th class="timeCell">01:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="8"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="9"></td>
@@ -64,7 +158,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="13"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="14"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time2">
                         <th class="timeCell">02:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="15"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="16"></td>
@@ -74,7 +168,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="20"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="21"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time3">
                         <th class="timeCell">03:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="22"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="23"></td>
@@ -84,7 +178,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="27"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="28"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time4">
                         <th class="timeCell">04:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="29"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="30"></td>
@@ -94,7 +188,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="34"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="35"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time5">
                         <th class="timeCell">05:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="36"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="37"></td>
@@ -104,7 +198,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="41"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="42"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time6">
                         <th class="timeCell">06:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="43"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="44"></td>
@@ -114,7 +208,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="48"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="49"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time7">
                         <th class="timeCell">07:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="50"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="51"></td>
@@ -124,7 +218,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="55"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="56"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time8">
                         <th class="timeCell">08:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="57"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="58"></td>
@@ -134,7 +228,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="62"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="63"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time9">
                         <th class="timeCell">09:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="64"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="65"></td>
@@ -144,7 +238,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="69"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="70"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time10">
                         <th class="timeCell">10:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="71"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="72"></td>
@@ -154,7 +248,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="76"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="77"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time11">
                         <th class="timeCell">11:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="78"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="79"></td>
@@ -164,7 +258,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="83"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="84"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time12">
                         <th class="timeCell">12:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="85"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="86"></td>
@@ -174,7 +268,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="90"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="91"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time13">
                         <th class="timeCell">13:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="92"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="93"></td>
@@ -184,7 +278,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="97"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="98"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time14">
                         <th class="timeCell">14:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="99"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="100"></td>
@@ -194,7 +288,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="104"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="105"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time15">
                         <th class="timeCell">15:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="106"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="107"></td>
@@ -204,7 +298,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="111"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="112"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time16">
                         <th class="timeCell">16:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="113"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="114"></td>
@@ -214,7 +308,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="118"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="119"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time17">
                         <th class="timeCell">17:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="120"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="121"></td>
@@ -224,7 +318,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="125"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="126"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time18">
                         <th class="timeCell">18:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="127"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="128"></td>
@@ -234,7 +328,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="132"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="133"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time19">
                         <th class="timeCell">19:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="134"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="135"></td>
@@ -244,7 +338,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="139"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="140"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time20">
                         <th class="timeCell">20:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="141"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="142"></td>
@@ -254,7 +348,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="146"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="147"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time21">
                         <th class="timeCell">21:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="148"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="149"></td>
@@ -264,7 +358,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="153"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="154"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time22">
                         <th class="timeCell">22:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="155"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="156"></td>
@@ -274,7 +368,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="160"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="161"></td>
                     </tr>
-                    <tr>
+                    <tr style="display:none" id="time23">
                         <th class="timeCell">23:00</th>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="162"></td>
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="163"></td>
@@ -285,6 +379,7 @@
                         <td onclick="location.href='info_page.html?id=' + String(idnum(this)) + '&' + getQuery(window.location.href);" class="contCell" id="168"></td>
                     </tr>
                 </table>
+                <script type="text/javascript">downloadForm(); updateCapacity(); interval = setInterval(updateCapacity, 5000);</script>
             </div>
         </div>
     </body>
@@ -304,53 +399,4 @@
         }
     </script>
 
-    <script type="text/javascript">
-
-        /*
-            XMLHttpRequest object ctor.
-        */
-        function createXmlHttpRequestObject(){
-            var request;
-
-            try{
-                request = new XMLHttpRequest();
-            } catch(e){
-                try{
-                    request = new ActiveXObject("Microsoft.XMLHttp");
-                } catch(e){
-                    // ignore err
-                }
-            }
-
-            if (!request){
-                alert("Nepodařilo se vytvořit XMLHttpRequest.");
-            } else{
-                return request;
-            }
-        }
-
-        function uploadForm(){
-            try{
-                var request = createXmlHttpRequestObject();
-                request.open("POST", "http://localhost:8080/reservation/1", true);
-                request.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-                //request.setRequestHeader("Access-Control-Allow-Origin", "*")
-
-                request.onreadystatechange = function() {
-                    if((request.readyState == 4) && (request.status == 200)){
-                        console.log("success");
-                    }
-                }
-
-                // id, serviceid, date, time, name, email, phonenum
-                var data = JSON.stringify({"serviceid": 1, "date": "00.00.2012", "time": "1800", "name": "David Bruhtr", "email": "priklad@email.com", "phonenum": "020202020"});
-                console.log(data)
-                request.send(data);
-            }
-            catch (e){
-                alert(e.toString());
-            }
-        }
-
-    </script>
 </html>

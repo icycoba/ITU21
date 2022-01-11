@@ -8,7 +8,7 @@
     cursor: pointer;
     color: white;    
     grid-row: 2;
-    grid-column: 4 / span 2;
+    grid-column: 5 / span 2;
 }
 
 .item button a{

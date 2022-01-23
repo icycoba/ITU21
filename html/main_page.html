@@ -93,6 +93,9 @@
                         }
                         for(let i = beginHours*7; i <= endHours*7+7; i++){
                             contCell[i].innerHTML = `${tempArray[i]}/${capacity}`
+                            if(tempArray[i]==capacity){
+                                contCell[i].style.backgroundColor = 'red'
+                            }
                         }
                     }
                 }

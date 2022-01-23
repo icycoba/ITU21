@@ -97,6 +97,15 @@
                                 contCell[i].style.backgroundColor = 'red'
                                 contCell[i].style.pointerEvents = 'none'
                             }
+                            else if((tempArray[i] + 1) == capacity){
+                                contCell[i].style.backgroundColor='yellow'
+                            }
+                            else{
+                                contCell[i].style.backgroundColor ='green'
+                            }
+                            if(tempArray[i] == 0){
+                                contCell[i].style.backgroundColor='green'
+                            }
                         }
                     }
                 }

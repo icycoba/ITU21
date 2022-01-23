@@ -95,6 +95,15 @@
                                 contCell[i].style.backgroundColor = 'red'
                                 contCell[i].style.pointerEvents = 'none'
                             }
+                            else if((tempArray[i] + 1) == capacity){
+                                contCell[i].style.backgroundColor='yellow'
+                            }
+                            else{
+                                contCell[i].style.backgroundColor ='green'
+                            }
+                            if(tempArray[i] == 0){
+                                contCell[i].style.backgroundColor='green'
+                            }
                         }
                     }
                 }
@@ -116,9 +125,7 @@
                 </ul>
             </div>
             <div class="weekSwitch">
-                <buttom class="leftArrow"><img src="../images/arrow.png" id="leftArr"></buttom>
                 <input type="week" id="weekBar" name="weekBar" min="2022-W04" value="2022-W04">
-                <buttom class="rightArrow"><img src="../images/arrow.png" id="rightArr"></buttom>
             </div>
             <div class="calendarCont">
                 <table id="calendar">
